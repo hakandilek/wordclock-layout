@@ -70,7 +70,16 @@ public class TimeSpeller implements TimeTraveler {
 			// 13+ buçuk
 			(when((h, m) -> h > 12 && m == 30)).spell((h, m) -> new Reading("saat").add(neutral(h - 12)).add("buçuk")),
 			// yarım
-			(when((h, m) -> (h == 0 || h == 12) && m == 30)).spell((h, m) -> new Reading("saat").add("yarım"))
+			(when((h, m) -> (h == 0 || h == 12) && m == 30)).spell((h, m) -> new Reading("saat").add("yarım")),
+			// var
+			(when((h, m) -> h > 0 && m > 39))
+					.spell((h, m) -> new Reading("saat").add(dative(h + 1)).add(neutral(60 - m)).add("var")),
+			// 00:xx var
+			(when((h, m) -> h == 0 && m > 39))
+					.spell((h, m) -> new Reading("saat").add(dative(1)).add(neutral(60 - m)).add("var")),
+			// 13+ var
+			(when((h, m) -> h > 12 && m > 39))
+					.spell((h, m) -> new Reading("saat").add(dative(h - 12 + 1)).add(neutral(60 - m)).add("var"))
 
 	);
 
