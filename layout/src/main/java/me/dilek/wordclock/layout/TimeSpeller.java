@@ -84,15 +84,14 @@ public class TimeSpeller implements TimeTraveler {
 	);
 
 	public void walk(Intervals intervals) {
-		List<TimeValue> values = intervals.getValues();
-		for (TimeValue value : values) {
+		intervals.getValues().stream().forEach((value) -> {
 			LocalDateTime time = value.getTime();
 			int hour = time.getHour();
 			int minute = time.getMinute();
 			List<Reading> readings = spellings.stream().filter(s -> s.matches(hour, minute))
 					.map((spelling) -> spelling.spell(hour, minute)).collect(Collectors.toList());
 			value.addReadings(readings);
-		}
+		});
 	}
 
 	private static SpellingCondition when(BiFunction<Integer, Integer, Boolean> matcher) {

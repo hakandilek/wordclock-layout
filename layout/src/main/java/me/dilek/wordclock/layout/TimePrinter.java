@@ -7,9 +7,7 @@ public class TimePrinter implements TimeTraveler {
 
 	public void walk(Intervals intervals) {
 		List<TimeValue> values = intervals.getValues();
-		for (TimeValue value : values) {
-			System.out.println(value);
-		}
+		values.stream().forEach(System.out::println);
 		System.out.println(MessageFormat.format("{0} intervals", values.size()));
 	}
 

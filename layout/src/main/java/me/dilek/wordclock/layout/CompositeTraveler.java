@@ -18,9 +18,7 @@ public class CompositeTraveler implements TimeTraveler {
 	}
 
 	public void walk(Intervals intervals) {
-		for (TimeTraveler traveler : travelers) {
-			traveler.walk(intervals);
-		}
+		travelers.stream().forEach((t) -> t.walk(intervals));
 	}
 
 	public CompositeTraveler add(TimeTraveler traveler) {
