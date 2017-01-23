@@ -29,7 +29,10 @@ public class WordCollector implements TimeTraveler {
 
 	public void printAll() {
 		this.words.stream().forEach(System.out::println);
+	}
 
+	public Set<String> getWords() {
+		return words;
 	}
 
 }

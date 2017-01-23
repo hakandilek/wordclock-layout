@@ -1,5 +1,9 @@
 package me.dilek.wordclock.layout;
 
+import java.util.Set;
+
+import me.dilek.wordclock.layout.ga.GeneticSolver;
+
 /**
  * Main app
  */
@@ -14,5 +18,10 @@ public class App
 		
 		wordCollector.printAll();
 		wordCollector.printCount();
+		
+		Set<String> words = wordCollector.getWords();
+		int initialPopulation = 10;
+		GeneticSolver solver = new GeneticSolver(words, initialPopulation, intervals);
+		solver.solve();
     }
 }

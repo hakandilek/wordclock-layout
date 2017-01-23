@@ -37,4 +37,12 @@ public class LayoutGenerator {
 		return layout;
 	}
 
+	public static List<Layout> of(int cols, int rows, Collection<String> dictionary, int count) {
+		List<Layout> list = new ArrayList<>(count);
+		for (int i = 0; i < count; i++) {
+			list.add(of(cols, rows, dictionary));
+		}
+		return list;
+	}
+
 }

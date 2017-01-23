@@ -56,4 +56,25 @@ public class LayoutGeneratorTest {
 			assertFalse(row.isEmpty());
 		}
 	}
+
+	@Test
+	public void testOfDictionaryMultiple() {
+		String[] words = new String[] { "bir", "iki", "üç", "dört", "beş", "altı", "yedi", "sekiz", "dokuz", "on",
+				"yirmi", "otuz", "kırk", "elli", "altmış", "yetmiş", "seksen", "doksan", };
+
+		List<Layout> layouts = LayoutGenerator.of(10, 10, Arrays.asList(words), 5);
+		assertNotNull(layouts);
+		assertEquals(5, layouts.size());
+		for (Layout layout : layouts) {
+			assertNotNull(layout);
+			System.out.println(layout);
+			assertEquals(words.length, layout.words().size());
+			assertTrue(layout.rowCount() <= 10);
+			for (int i = 0; i < layout.rowCount(); i++) {
+				List<String> row = layout.words(i);
+				assertNotNull(row);
+				assertFalse(row.isEmpty());
+			}
+		}
+	}
 }
