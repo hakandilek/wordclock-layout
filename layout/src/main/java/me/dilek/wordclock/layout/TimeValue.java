@@ -30,4 +30,8 @@ public class TimeValue {
 		this.readings.addAll(readings);
 	}
 
+	public List<Reading> getReadings() {
+		return readings;
+	}
+	
 }

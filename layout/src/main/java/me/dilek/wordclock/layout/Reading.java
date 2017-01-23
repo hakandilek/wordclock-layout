@@ -30,4 +30,8 @@ public class Reading {
 		return this;
 	}
 
+	public List<String> getWords() {
+		return words;
+	}
+
 }
