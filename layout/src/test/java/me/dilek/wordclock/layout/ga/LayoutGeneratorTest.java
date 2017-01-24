@@ -16,7 +16,7 @@ public class LayoutGeneratorTest {
 		Layout layout = LayoutGenerator.of(10, 10);
 		assertNotNull(layout);
 		System.out.println(layout);
-		assertEquals(100, layout.words().size());
+		assertEquals(100, layout.wordsList().size());
 		assertEquals(10, layout.rowCount());
 		for (int i = 0; i < 10; i++) {
 			List<String> row = layout.words(i);
@@ -29,7 +29,7 @@ public class LayoutGeneratorTest {
 		Layout layout = LayoutGenerator.of(10, 10, new char[] { '1' });
 		assertNotNull(layout);
 		System.out.println(layout);
-		assertEquals(100, layout.words().size());
+		assertEquals(100, layout.wordsList().size());
 		assertEquals(10, layout.rowCount());
 		for (int i = 0; i < 10; i++) {
 			List<String> row = layout.words(i);
@@ -48,7 +48,7 @@ public class LayoutGeneratorTest {
 		Layout layout = LayoutGenerator.of(10, 10, Arrays.asList(words));
 		assertNotNull(layout);
 		System.out.println(layout);
-		assertEquals(words.length, layout.words().size());
+		assertEquals(words.length, layout.wordsList().size());
 		assertTrue(layout.rowCount() <= 10);
 		for (int i = 0; i < layout.rowCount(); i++) {
 			List<String> row = layout.words(i);
@@ -68,7 +68,7 @@ public class LayoutGeneratorTest {
 		for (Layout layout : layouts) {
 			assertNotNull(layout);
 			System.out.println(layout);
-			assertEquals(words.length, layout.words().size());
+			assertEquals(words.length, layout.wordsList().size());
 			assertTrue(layout.rowCount() <= 10);
 			for (int i = 0; i < layout.rowCount(); i++) {
 				List<String> row = layout.words(i);
