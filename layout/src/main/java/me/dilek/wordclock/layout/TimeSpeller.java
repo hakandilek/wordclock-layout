@@ -29,57 +29,57 @@ public class TimeSpeller implements TimeTraveler {
 
 	final static List<TimeSpelling> spellings = Arrays.asList(
 			// 00:00
-			(when((h, m) -> h == 0 && m == 0)).spell((h, m) -> new Reading("saat").add(neutral(12))),
+			(when((h, m) -> h == 0 && m == 0)).spell((h, m) -> new Reading().add(neutral(12))),
 			// 01-23:00
-			(when((h, m) -> h > 0 && m == 0)).spell((h, m) -> new Reading("saat").add(neutral(h))),
+			(when((h, m) -> h > 0 && m == 0)).spell((h, m) -> new Reading().add(neutral(h))),
 			// 13-23:00
-			(when((h, m) -> h > 12 && m == 0)).spell((h, m) -> new Reading("saat").add(neutral(h - 12))),
+			(when((h, m) -> h > 12 && m == 0)).spell((h, m) -> new Reading().add(neutral(h - 12))),
 			// 00:10-59
-			(when((h, m) -> h == 0 && m > 9)).spell((h, m) -> new Reading("saat").add(neutral(12)).add(neutral(m))),
+			(when((h, m) -> h == 0 && m > 9)).spell((h, m) -> new Reading().add(neutral(12)).add(neutral(m))),
 			// 00:00-59
 			(when((h, m) -> (h == 0 || h == 12) && m != 0))
-					.spell((h, m) -> new Reading("saat").add(objective(12)).add(neutral(m)).add("geçiyor")),
+					.spell((h, m) -> new Reading().add(objective(12)).add(neutral(m)).add("geçiyor")),
 			// 01-23:10-59
-			(when((h, m) -> h > 0 && m > 9)).spell((h, m) -> new Reading("saat").add(neutral(h)).add(neutral(m))),
+			(when((h, m) -> h > 0 && m > 9)).spell((h, m) -> new Reading().add(neutral(h)).add(neutral(m))),
 			// 01-23:00-59
 			(when((h, m) -> h > 0 && m != 0))
-					.spell((h, m) -> new Reading("saat").add(objective(h)).add(neutral(m)).add("geçiyor")),
+					.spell((h, m) -> new Reading().add(objective(h)).add(neutral(m)).add("geçiyor")),
 			// 13-23:10-59
-			(when((h, m) -> h > 12 && m > 9)).spell((h, m) -> new Reading("saat").add(neutral(h - 12)).add(neutral(m))),
+			(when((h, m) -> h > 12 && m > 9)).spell((h, m) -> new Reading().add(neutral(h - 12)).add(neutral(m))),
 			// 13-23:00-59
 			(when((h, m) -> h > 12 && m != 0))
-					.spell((h, m) -> new Reading("saat").add(objective(h - 12)).add(neutral(m)).add("geçiyor")),
+					.spell((h, m) -> new Reading().add(objective(h - 12)).add(neutral(m)).add("geçiyor")),
 			// çeyrek geçiyor
 			(when((h, m) -> h > 0 && m == 15))
-					.spell((h, m) -> new Reading("saat").add(objective(h)).add("çeyrek", "geçiyor")),
+					.spell((h, m) -> new Reading().add(objective(h)).add("çeyrek", "geçiyor")),
 			// 00:15
 			(when((h, m) -> h == 0 && m == 15))
-					.spell((h, m) -> new Reading("saat").add(objective(12)).add("çeyrek", "geçiyor")),
+					.spell((h, m) -> new Reading().add(objective(12)).add("çeyrek", "geçiyor")),
 			// 13+ çeyrek geçiyor
 			(when((h, m) -> h > 12 && m == 15))
-					.spell((h, m) -> new Reading("saat").add(objective(h - 12)).add("çeyrek", "geçiyor")),
+					.spell((h, m) -> new Reading().add(objective(h - 12)).add("çeyrek", "geçiyor")),
 			// çeyrek var
-			(when((h, m) -> m == 45)).spell((h, m) -> new Reading("saat").add(dative(h + 1)).add("çeyrek", "var")),
+			(when((h, m) -> m == 45)).spell((h, m) -> new Reading().add(dative(h + 1)).add("çeyrek", "var")),
 			// 13+ çeyrek var
 			(when((h, m) -> h > 12 && m == 45))
-					.spell((h, m) -> new Reading("saat").add(dative(h - 12 + 1)).add("çeyrek", "var")),
+					.spell((h, m) -> new Reading().add(dative(h - 12 + 1)).add("çeyrek", "var")),
 			// buçuk
-			(when((h, m) -> h > 0 && m == 30)).spell((h, m) -> new Reading("saat").add(neutral(h)).add("buçuk")),
+			(when((h, m) -> h > 0 && m == 30)).spell((h, m) -> new Reading().add(neutral(h)).add("buçuk")),
 			// 00:30
-			(when((h, m) -> h == 0 && m == 30)).spell((h, m) -> new Reading("saat").add(neutral(12)).add("buçuk")),
+			(when((h, m) -> h == 0 && m == 30)).spell((h, m) -> new Reading().add(neutral(12)).add("buçuk")),
 			// 13+ buçuk
-			(when((h, m) -> h > 12 && m == 30)).spell((h, m) -> new Reading("saat").add(neutral(h - 12)).add("buçuk")),
+			(when((h, m) -> h > 12 && m == 30)).spell((h, m) -> new Reading().add(neutral(h - 12)).add("buçuk")),
 			// yarım
-			(when((h, m) -> (h == 0 || h == 12) && m == 30)).spell((h, m) -> new Reading("saat").add("yarım")),
+			(when((h, m) -> (h == 0 || h == 12) && m == 30)).spell((h, m) -> new Reading().add("yarım")),
 			// var
 			(when((h, m) -> h > 0 && m > 39))
-					.spell((h, m) -> new Reading("saat").add(dative(h + 1)).add(neutral(60 - m)).add("var")),
+					.spell((h, m) -> new Reading().add(dative(h + 1)).add(neutral(60 - m)).add("var")),
 			// 00:xx var
 			(when((h, m) -> h == 0 && m > 39))
-					.spell((h, m) -> new Reading("saat").add(dative(1)).add(neutral(60 - m)).add("var")),
+					.spell((h, m) -> new Reading().add(dative(1)).add(neutral(60 - m)).add("var")),
 			// 13+ var
 			(when((h, m) -> h > 12 && m > 39))
-					.spell((h, m) -> new Reading("saat").add(dative(h - 12 + 1)).add(neutral(60 - m)).add("var"))
+					.spell((h, m) -> new Reading().add(dative(h - 12 + 1)).add(neutral(60 - m)).add("var"))
 
 	);
 

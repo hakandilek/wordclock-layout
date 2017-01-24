@@ -20,8 +20,10 @@ public class App
 		wordCollector.printCount();
 		
 		Set<String> words = wordCollector.getWords();
-		int initialPopulation = 10;
-		GeneticSolver solver = new GeneticSolver(words, initialPopulation, intervals);
+		int initialPopulation = 100;
+		int limitGenerations = 100;
+		int cols = 18, rows = 16;
+		GeneticSolver solver = new GeneticSolver(words, initialPopulation, limitGenerations, intervals, cols, rows);
 		solver.solve();
     }
 }

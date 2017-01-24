@@ -2,6 +2,7 @@ package me.dilek.wordclock.layout;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -36,10 +37,14 @@ public class Layout {
 		return false;
 	}
 
-	public List<String> words() {
-		return rows.stream().flatMap(Row::stream).collect(Collectors.toList());
+	public List<String> wordsList() {
+		return words().collect(Collectors.toList());
 	}
 
+	public Stream<String> words() {
+		return rows.stream().flatMap(Row::stream);
+	}
+	
 	public List<String> words(int row) {
 		if (row < rows.size()) {
 			return rows.get(row).words;
@@ -97,6 +102,30 @@ public class Layout {
 			sb.append(row).append(System.lineSeparator());
 		}
 		return sb.toString();
+	}
+
+	public boolean contains(Reading reading) {
+		int nextIndex = 0;
+		List<String> layoutWords = wordsList();
+		List<String> readingWords = reading.getWords();
+		for (Iterator<String> iterator = readingWords.iterator(); iterator.hasNext();) {
+			String word = iterator.next();
+			for (; nextIndex < layoutWords.size(); nextIndex++) {
+				String next = layoutWords.get(nextIndex);
+				if(next != null && next.equals(word)) {
+					if(!iterator.hasNext()) {
+						return true;
+					}
+					word = iterator.next();
+					continue;//continue for next match
+				}
+			}
+			if(nextIndex >= layoutWords.size()) {
+				return false;
+			}
+			
+		}
+		return true;
 	}
 
 }
